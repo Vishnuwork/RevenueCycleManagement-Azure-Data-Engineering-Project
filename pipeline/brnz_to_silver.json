@@ -294,40 +294,22 @@
 		],
 		"parameters": {
 			"Load_Type": {
-				"type": "string",
-				"defaultValue": "item().loadtype"
+				"type": "string"
 			},
 			"db_name": {
-				"type": "string",
-				"defaultValue": "item().database"
+				"type": "string"
 			},
 			"table_name": {
-				"type": "string",
-				"defaultValue": "item().tablename"
-			},
-			"container": {
-				"type": "string",
-				"defaultValue": "item().container"
-			},
-			"file_path": {
-				"type": "string",
-				"defaultValue": "item().file_path"
-			},
-			"file_name": {
-				"type": "string",
-				"defaultValue": "item().file_name"
+				"type": "string"
 			},
 			"datasource": {
-				"type": "string",
-				"defaultValue": "item().datasource"
+				"type": "string"
 			},
 			"watermark": {
-				"type": "string",
-				"defaultValue": "item().watermark"
+				"type": "string"
 			},
 			"targetpath": {
-				"type": "string",
-				"defaultValue": "item().targetpath"
+				"type": "string"
 			}
 		},
 		"annotations": [],
