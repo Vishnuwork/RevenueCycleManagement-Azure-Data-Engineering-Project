@@ -901,7 +901,14 @@
 														"type": "PipelineReference"
 													},
 													"waitOnCompletion": true,
-													"parameters": {}
+													"parameters": {
+														"Load_Type": "item().loadtype",
+														"db_name": "item().database",
+														"tablename": "item().tablename",
+														"datasource": "item().datasource",
+														"watermark": "item().watermark",
+														"targetpath": "item().targetpath"
+													}
 												}
 											}
 										]
