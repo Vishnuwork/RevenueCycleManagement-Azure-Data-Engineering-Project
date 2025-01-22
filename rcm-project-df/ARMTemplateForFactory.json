@@ -574,6 +574,8 @@
 								{
 									"name": "If Condition2",
 									"type": "IfCondition",
+									"state": "Inactive",
+									"onInactiveMarkAs": "Succeeded",
 									"dependsOn": [
 										{
 											"activity": "If Condition1",
@@ -870,8 +872,6 @@
 								{
 									"name": "If Condition3",
 									"type": "IfCondition",
-									"state": "Inactive",
-									"onInactiveMarkAs": "Succeeded",
 									"dependsOn": [
 										{
 											"activity": "If Condition2",
