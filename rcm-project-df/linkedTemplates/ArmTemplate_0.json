@@ -872,7 +872,7 @@
 															"table_name": "\"aa\""
 														}
 													},
-													"firstRowOnly": false
+													"firstRowOnly": true
 												}
 											},
 											{
