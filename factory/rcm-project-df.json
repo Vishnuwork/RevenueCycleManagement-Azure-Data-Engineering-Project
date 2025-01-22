@@ -1,0 +1,9 @@
+{
+	"name": "rcm-project-df",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "803e08f6-00a1-4762-9344-5c054d7b0a2e",
+		"tenantId": "87f21430-e6db-4be2-811f-f18ce5226038"
+	}
+}
