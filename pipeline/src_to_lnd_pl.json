@@ -516,7 +516,7 @@
 								},
 								"ifTrueActivities": [
 									{
-										"name": "Execute Pipeline1",
+										"name": "Execute Pipeline",
 										"type": "ExecutePipeline",
 										"dependsOn": [],
 										"policy": {
