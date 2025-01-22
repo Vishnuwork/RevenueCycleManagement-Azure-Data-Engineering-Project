@@ -75,7 +75,7 @@
 										"source": {
 											"type": "AzureDatabricksDeltaLakeSource",
 											"query": {
-												"value": "@concat('select coalesce(cast(max(loaddate) as date),''','1900-01-01',''') as last_fetched_date from audit.load_logs where',' data_source=''',pipeline().parameters.datasource,''' and tablename=''',pipeline().parameters.table_name,'''')",
+												"value": "@concat('select coalesce(cast(max(loaddate) as date),''','1900-01-01',''') as last_fetched_date from audit.load_logs where',' data_source=''',pipeline().parameters.datasource,''' and tablename=''',pipeline().parameters.tablename,'''')",
 												"type": "Expression"
 											}
 										},
@@ -113,7 +113,7 @@
 										"source": {
 											"type": "AzureSqlSource",
 											"sqlReaderQuery": {
-												"value": "@concat('select *,''',pipeline().parameters.datasource,''' as datasource from ',pipeline().parameters.table_name,' where ',pipeline().parameters.watermark,' >= ''',activity('fetch_logs').output.firstRow.last_fetched_date,'''')",
+												"value": "@concat('select *,''',pipeline().parameters.datasource,''' as datasource from ',pipeline().parameters.tablename,' where ',pipeline().parameters.watermark,' >= ''',activity('fetch_logs').output.firstRow.last_fetched_date,'''')",
 												"type": "Expression"
 											},
 											"queryTimeout": "02:00:00",
@@ -148,11 +148,11 @@
 													"type": "Expression"
 												},
 												"schema_name": {
-													"value": "@split(pipeline().parameters.table_name,'.')[0]",
+													"value": "@split(pipeline().parameters.tablename,'.')[0]",
 													"type": "Expression"
 												},
 												"table_name": {
-													"value": "@split(pipeline().parameters.table_name,'.')[1]",
+													"value": "@split(pipeline().parameters.tablename,'.')[1]",
 													"type": "Expression"
 												}
 											}
@@ -169,7 +169,7 @@
 													"type": "Expression"
 												},
 												"file_name": {
-													"value": "@split(pipeline().parameters.table_name,'.')[1]",
+													"value": "@split(pipeline().parameters.tablename,'.')[1]",
 													"type": "Expression"
 												}
 											}
@@ -199,7 +199,7 @@
 										"source": {
 											"type": "AzureDatabricksDeltaLakeSource",
 											"query": {
-												"value": "@concat('insert into audit.load_logs(data_source,tablename,numberofrowscopied,watermarkcolumnname,loaddate) values (''',pipeline().parameters.datasource,''', ''',pipeline().parameters.table_name,''',''',activity('incremental_load').output.rowscopied,''',''',pipeline().parameters.watermark,''',''',utcNow(),''')')",
+												"value": "@concat('insert into audit.load_logs(data_source,tablename,numberofrowscopied,watermarkcolumnname,loaddate) values (''',pipeline().parameters.datasource,''', ''',pipeline().parameters.tablename,''',''',activity('incremental_load').output.rowscopied,''',''',pipeline().parameters.watermark,''',''',utcNow(),''')')",
 												"type": "Expression"
 											}
 										},
@@ -232,7 +232,7 @@
 										"source": {
 											"type": "AzureSqlSource",
 											"sqlReaderQuery": {
-												"value": "@concat('select *,''', pipeline().parameters.datasource,''' as datasource from ', pipeline().parameters.table_name)",
+												"value": "@concat('select *,''', pipeline().parameters.datasource,''' as datasource from ', pipeline().parameters.tablename)",
 												"type": "Expression"
 											},
 											"queryTimeout": "02:00:00",
@@ -267,11 +267,11 @@
 													"type": "Expression"
 												},
 												"schema_name": {
-													"value": "@split(pipeline().parameters.table_name,'.')[0]",
+													"value": "@split(pipeline().parameters.tablename,'.')[0]",
 													"type": "Expression"
 												},
 												"table_name": {
-													"value": "@split(pipeline().parameters.table_name,'.')[1]",
+													"value": "@split(pipeline().parameters.tablename,'.')[1]",
 													"type": "Expression"
 												}
 											}
@@ -288,7 +288,7 @@
 													"type": "Expression"
 												},
 												"file_name": {
-													"value": "@split(pipeline().parameters.table_name, '.')[1]",
+													"value": "@split(pipeline().parameters.tablename, '.')[1]",
 													"type": "Expression"
 												}
 											}
@@ -318,7 +318,7 @@
 										"source": {
 											"type": "AzureDatabricksDeltaLakeSource",
 											"query": {
-												"value": "@concat('insert into audit.load_logs(data_source,tablename,numberofrowscopied,watermarkcolumnname,loaddate) values (''',pipeline().parameters.datasource,''', ''',pipeline().parameters.table_name,''',''',activity('Full_Load').output.rowscopied,''',''',pipeline().parameters.watermark,''',''',utcNow(),''')')",
+												"value": "@concat('insert into audit.load_logs(data_source,tablename,numberofrowscopied,watermarkcolumnname,loaddate) values (''',pipeline().parameters.datasource,''', ''',pipeline().parameters.tablename,''',''',activity('Full_Load').output.rowscopied,''',''',pipeline().parameters.watermark,''',''',utcNow(),''')')",
 												"type": "Expression"
 											}
 										},
@@ -346,7 +346,7 @@
 					"db_name": {
 						"type": "string"
 					},
-					"table_name": {
+					"tablename": {
 						"type": "string"
 					},
 					"datasource": {
@@ -888,7 +888,7 @@
 										},
 										"ifTrueActivities": [
 											{
-												"name": "Execute Pipeline1",
+												"name": "Execute Pipeline",
 												"type": "ExecutePipeline",
 												"dependsOn": [],
 												"policy": {
