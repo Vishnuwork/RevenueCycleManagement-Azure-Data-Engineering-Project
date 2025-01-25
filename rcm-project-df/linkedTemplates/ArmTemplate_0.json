@@ -1322,8 +1322,6 @@
 								{
 									"name": "If Condition2",
 									"type": "IfCondition",
-									"state": "Inactive",
-									"onInactiveMarkAs": "Succeeded",
 									"dependsOn": [
 										{
 											"activity": "If Condition1",
@@ -1614,6 +1612,8 @@
 								{
 									"name": "If Condition3",
 									"type": "IfCondition",
+									"state": "Inactive",
+									"onInactiveMarkAs": "Succeeded",
 									"dependsOn": [
 										{
 											"activity": "If Condition2",
@@ -1644,15 +1644,30 @@
 													},
 													"waitOnCompletion": true,
 													"parameters": {
-														"Load_Type": "@item().loadtype",
+														"Load_Type": {
+															"value": "@item().loadtype",
+															"type": "Expression"
+														},
 														"database": {
 															"value": "@item().database",
 															"type": "Expression"
 														},
-														"tablename": "@item().tablename",
-														"datasource": "@item().datasource",
-														"watermark": "@item().watermark",
-														"targetpath": "@item().targetpath"
+														"tablename": {
+															"value": "@item().tablename",
+															"type": "Expression"
+														},
+														"datasource": {
+															"value": "@item().datasource",
+															"type": "Expression"
+														},
+														"watermark": {
+															"value": "@item().watermark",
+															"type": "Expression"
+														},
+														"targetpath": {
+															"value": "@item().targetpath",
+															"type": "Expression"
+														}
 													}
 												}
 											}
