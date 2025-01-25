@@ -7,18 +7,6 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "rcm-project-df"
 		},
-		"AzureDataLakeStorage1_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
-		},
-		"AzureDatabricksDeltaLake1_accessToken": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accessToken' of 'AzureDatabricksDeltaLake1'"
-		},
-		"hos_sql_ls_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'hos_sql_ls'"
-		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://rcmprojectsacc.dfs.core.windows.net/"
@@ -34,6 +22,14 @@
 		"hos_sql_ls_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "rcm-sa"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://rcm-project-kvault.vault.azure.net/"
+		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0107-065200-sdu6sspu"
 		}
 	},
 	"variables": {
@@ -267,7 +263,7 @@
 											"type": "DatasetReference",
 											"parameters": {
 												"db_name": {
-													"value": "@pipeline().parameters.db_name",
+													"value": "@pipeline().parameters.database",
 													"type": "Expression"
 												},
 												"schema_name": {
@@ -386,7 +382,7 @@
 											"type": "DatasetReference",
 											"parameters": {
 												"db_name": {
-													"value": "@pipeline().parameters.db_name",
+													"value": "@pipeline().parameters.database",
 													"type": "Expression"
 												},
 												"schema_name": {
@@ -466,7 +462,7 @@
 					"Load_Type": {
 						"type": "string"
 					},
-					"db_name": {
+					"database": {
 						"type": "string"
 					},
 					"tablename": {
@@ -1239,12 +1235,18 @@
 				"typeProperties": {
 					"url": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]",
 					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "AzureKeyVault1",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "adls-access-key"
 					}
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureKeyVault1')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureDatabricksDeltaLake1')]",
@@ -1257,12 +1259,18 @@
 					"domain": "https://adb-1281714223196441.1.azuredatabricks.net",
 					"clusterId": "0107-065200-sdu6sspu",
 					"accessToken": {
-						"type": "SecureString",
-						"value": "[parameters('AzureDatabricksDeltaLake1_accessToken')]"
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "AzureKeyVault1",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "databricks-access-token"
 					}
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureKeyVault1')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/hos_sql_ls')]",
@@ -1284,12 +1292,55 @@
 					"authenticationType": "SQL",
 					"userName": "[parameters('hos_sql_ls_properties_typeProperties_userName')]",
 					"password": {
-						"type": "SecureString",
-						"value": "[parameters('hos_sql_ls_password')]"
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "AzureKeyVault1",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "azure-sql-password"
 					}
 				}
 			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureKeyVault1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureKeyVault1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+				}
+			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDatabricks1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-1281714223196441.1.azuredatabricks.net",
+					"accessToken": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "AzureKeyVault1",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "databricks-access-token"
+					},
+					"existingClusterId": "[parameters('AzureDatabricks1_properties_typeProperties_existingClusterId')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureKeyVault1')]"
+			]
 		}
 	]
 }

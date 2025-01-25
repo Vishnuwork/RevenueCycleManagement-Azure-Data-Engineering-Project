@@ -5,15 +5,6 @@
 		"factoryName": {
 			"value": "rcm-project-df"
 		},
-		"AzureDataLakeStorage1_accountKey": {
-			"value": ""
-		},
-		"AzureDatabricksDeltaLake1_accessToken": {
-			"value": ""
-		},
-		"hos_sql_ls_password": {
-			"value": ""
-		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://rcmprojectsacc.dfs.core.windows.net/"
 		},
@@ -25,6 +16,12 @@
 		},
 		"hos_sql_ls_properties_typeProperties_userName": {
 			"value": "rcm-sa"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://rcm-project-kvault.vault.azure.net/"
+		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"value": "0107-065200-sdu6sspu"
 		},
 		"containerUri": {
 			"value": ""

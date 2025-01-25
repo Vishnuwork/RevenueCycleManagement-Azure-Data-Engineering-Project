@@ -7,18 +7,6 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "rcm-project-df"
 		},
-		"AzureDataLakeStorage1_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
-		},
-		"AzureDatabricksDeltaLake1_accessToken": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accessToken' of 'AzureDatabricksDeltaLake1'"
-		},
-		"hos_sql_ls_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'hos_sql_ls'"
-		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://rcmprojectsacc.dfs.core.windows.net/"
@@ -34,6 +22,14 @@
 		"hos_sql_ls_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "rcm-sa"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://rcm-project-kvault.vault.azure.net/"
+		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0107-065200-sdu6sspu"
 		},
 		"containerUri": {
 			"type": "string",
@@ -62,14 +58,8 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"AzureDataLakeStorage1_accountKey": {
-						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
-					},
-					"AzureDatabricksDeltaLake1_accessToken": {
-						"value": "[parameters('AzureDatabricksDeltaLake1_accessToken')]"
-					},
-					"hos_sql_ls_password": {
-						"value": "[parameters('hos_sql_ls_password')]"
+					"AzureKeyVault1_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
 					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
@@ -82,6 +72,9 @@
 					},
 					"hos_sql_ls_properties_typeProperties_userName": {
 						"value": "[parameters('hos_sql_ls_properties_typeProperties_userName')]"
+					},
+					"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('AzureDatabricks1_properties_typeProperties_existingClusterId')]"
 					}
 				}
 			},
