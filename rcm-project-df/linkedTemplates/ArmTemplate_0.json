@@ -1322,8 +1322,6 @@
 								{
 									"name": "If Condition2",
 									"type": "IfCondition",
-									"state": "Inactive",
-									"onInactiveMarkAs": "Succeeded",
 									"dependsOn": [
 										{
 											"activity": "If Condition1",
@@ -1356,7 +1354,7 @@
 													"source": {
 														"type": "AzureDatabricksDeltaLakeSource",
 														"query": {
-															"value": "@concat('select coalesce(cast(max(loaddate) as date),''','1900-01-01',''') as last_fetched_date from audit.load_logs where',' data_source=''',item().datasource,''' and tablename=''',item().tablename,'''')",
+															"value": "@concat('select coalesce(cast(max(loaddate) as date),''','1900-01-01',''') as last_fetched_date from rcm_hc_adb_ws.audit.load_logs where',' data_source=''',item().datasource,''' and tablename=''',item().tablename,'''')",
 															"type": "Expression"
 														}
 													},
@@ -1481,7 +1479,7 @@
 													"source": {
 														"type": "AzureDatabricksDeltaLakeSource",
 														"query": {
-															"value": "@concat('insert into audit.load_logs(data_source,tablename,numberofrowscopied,watermarkcolumnname,loaddate) values (''',item().datasource,''', ''',item().tablename,''',''',activity('incremental_load').output.rowscopied,''',''',item().watermark,''',''',utcNow(),''')')",
+															"value": "@concat('insert into rcm_hc_adb_ws.audit.load_logs(data_source,tablename,numberofrowscopied,watermarkcolumnname,loaddate) values (''',item().datasource,''', ''',item().tablename,''',''',activity('incremental_load').output.rowscopied,''',''',item().watermark,''',''',utcNow(),''')')",
 															"type": "Expression"
 														}
 													},
@@ -1600,7 +1598,7 @@
 													"source": {
 														"type": "AzureDatabricksDeltaLakeSource",
 														"query": {
-															"value": "@concat('insert into audit.load_logs(data_source,tablename,numberofrowscopied,watermarkcolumnname,loaddate) values (''',item().datasource,''', ''',item().tablename,''',''',activity('Full_Load').output.rowscopied,''',''',item().watermark,''',''',utcNow(),''')')",
+															"value": "@concat('insert into rcm_hc_adb_ws.audit.load_logs(data_source,tablename,numberofrowscopied,watermarkcolumnname,loaddate) values (''',item().datasource,''', ''',item().tablename,''',''',activity('Full_Load').output.rowscopied,''',''',item().watermark,''',''',utcNow(),''')')",
 															"type": "Expression"
 														}
 													},
@@ -1620,6 +1618,8 @@
 								{
 									"name": "If Condition3",
 									"type": "IfCondition",
+									"state": "Inactive",
+									"onInactiveMarkAs": "Succeeded",
 									"dependsOn": [
 										{
 											"activity": "If Condition2",
