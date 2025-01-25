@@ -531,7 +531,10 @@
 											"waitOnCompletion": true,
 											"parameters": {
 												"Load_Type": "item().loadtype",
-												"db_name": "item().database",
+												"database": {
+													"value": "@item().database",
+													"type": "Expression"
+												},
 												"tablename": "item().tablename",
 												"datasource": "item().datasource",
 												"watermark": "item().watermark",
