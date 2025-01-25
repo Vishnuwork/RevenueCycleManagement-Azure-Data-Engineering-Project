@@ -342,7 +342,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"db_name": {
-											"value": "@pipeline().parameters.db_name",
+											"value": "@pipeline().parameters.database",
 											"type": "Expression"
 										},
 										"schema_name": {
@@ -419,7 +419,7 @@
 			"Load_Type": {
 				"type": "string"
 			},
-			"db_name": {
+			"database": {
 				"type": "string"
 			},
 			"tablename": {
