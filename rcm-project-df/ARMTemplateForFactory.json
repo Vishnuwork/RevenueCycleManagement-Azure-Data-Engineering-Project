@@ -318,7 +318,7 @@
 										"source": {
 											"type": "AzureDatabricksDeltaLakeSource",
 											"query": {
-												"value": "@concat('insert into audit.load_logs(data_source,tablename,numberofrowscopied,watermarkcolumnname,loaddate) values (''',pipeline().parameters.datasource,''', ''',pipeline().parameters.tablename,''',''',activity('incremental_load').output.rowscopied,''',''',pipeline().parameters.watermark,''',''',utcNow(),''')')",
+												"value": "@concat('insert into rcm_hc_adb_ws.audit.load_logs(data_source,tablename,numberofrowscopied,watermarkcolumnname,loaddate) values (''',pipeline().parameters.datasource,''', ''',pipeline().parameters.tablename,''',''',activity('incremental_load').output.rowscopied,''',''',pipeline().parameters.watermark,''',''',utcNow(),''')')",
 												"type": "Expression"
 											}
 										},
@@ -437,7 +437,7 @@
 										"source": {
 											"type": "AzureDatabricksDeltaLakeSource",
 											"query": {
-												"value": "@concat('insert into audit.load_logs(data_source,tablename,numberofrowscopied,watermarkcolumnname,loaddate) values (''',pipeline().parameters.datasource,''', ''',pipeline().parameters.tablename,''',''',activity('Full_Load').output.rowscopied,''',''',pipeline().parameters.watermark,''',''',utcNow(),''')')",
+												"value": "@concat('insert into rcm_hc_adb_ws.audit.load_logs(data_source,tablename,numberofrowscopied,watermarkcolumnname,loaddate) values (''',pipeline().parameters.datasource,''', ''',pipeline().parameters.tablename,''',''',activity('Full_Load').output.rowscopied,''',''',pipeline().parameters.watermark,''',''',utcNow(),''')')",
 												"type": "Expression"
 											}
 										},
