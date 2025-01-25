@@ -1,6 +1,11 @@
 {
 	"name": "AzureKeyVault1",
 	"properties": {
+		"parameters": {
+			"linked_service": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "AzureKeyVault",
 		"typeProperties": {
