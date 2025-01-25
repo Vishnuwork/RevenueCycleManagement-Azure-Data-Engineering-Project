@@ -223,7 +223,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"db_name": {
-											"value": "@pipeline().parameters.db_name",
+											"value": "@pipeline().parameters.database",
 											"type": "Expression"
 										},
 										"schema_name": {
