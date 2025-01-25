@@ -1650,15 +1650,15 @@
 													},
 													"waitOnCompletion": true,
 													"parameters": {
-														"Load_Type": "item().loadtype",
+														"Load_Type": "@item().loadtype",
 														"database": {
 															"value": "@item().database",
 															"type": "Expression"
 														},
-														"tablename": "item().tablename",
-														"datasource": "item().datasource",
-														"watermark": "item().watermark",
-														"targetpath": "item().targetpath"
+														"tablename": "@item().tablename",
+														"datasource": "@item().datasource",
+														"watermark": "@item().watermark",
+														"targetpath": "@item().targetpath"
 													}
 												}
 											}
