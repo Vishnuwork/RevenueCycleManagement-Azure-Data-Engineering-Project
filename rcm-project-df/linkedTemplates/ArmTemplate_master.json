@@ -11,6 +11,14 @@
 			"type": "string",
 			"defaultValue": "https://rcmprojectsacc.dfs.core.windows.net/"
 		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0107-065200-sdu6sspu"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://rcm-project-kvault.vault.azure.net/"
+		},
 		"hos_sql_ls_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "rcm-project-sqlserver.database.windows.net"
@@ -22,14 +30,6 @@
 		"hos_sql_ls_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "rcm-sa"
-		},
-		"AzureKeyVault1_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://rcm-project-kvault.vault.azure.net/"
-		},
-		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
-			"type": "string",
-			"defaultValue": "0107-065200-sdu6sspu"
 		},
 		"containerUri": {
 			"type": "string",
@@ -64,6 +64,9 @@
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
 					},
+					"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('AzureDatabricks1_properties_typeProperties_existingClusterId')]"
+					},
 					"hos_sql_ls_properties_typeProperties_server": {
 						"value": "[parameters('hos_sql_ls_properties_typeProperties_server')]"
 					},
@@ -72,9 +75,6 @@
 					},
 					"hos_sql_ls_properties_typeProperties_userName": {
 						"value": "[parameters('hos_sql_ls_properties_typeProperties_userName')]"
-					},
-					"AzureDatabricks1_properties_typeProperties_existingClusterId": {
-						"value": "[parameters('AzureDatabricks1_properties_typeProperties_existingClusterId')]"
 					}
 				}
 			},
