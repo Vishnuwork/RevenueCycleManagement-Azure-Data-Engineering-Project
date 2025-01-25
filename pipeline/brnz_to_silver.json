@@ -344,6 +344,14 @@
 										"db_name": {
 											"value": "@pipeline().parameters.database",
 											"type": "Expression"
+										},
+										"schema_name": {
+											"value": "@split(pipeline().parameters.tablename, '.')[0]",
+											"type": "Expression"
+										},
+										"table_name": {
+											"value": "@split(pipeline().parameters.tablename, '.')[1]",
+											"type": "Expression"
 										}
 									}
 								}
