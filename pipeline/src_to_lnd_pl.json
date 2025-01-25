@@ -307,12 +307,9 @@
 														"value": "@item().database",
 														"type": "Expression"
 													},
-													"schema_name": {
-														"value": "@split(item().tablename,'.')[0]",
-														"type": "Expression"
-													},
+													"schema_name": "@split(item().tablename, '.')[0]",
 													"table_name": {
-														"value": "@split(item().tablename,'.')[1]",
+														"value": "@split(item().tablename, '.')[1]",
 														"type": "Expression"
 													}
 												}
@@ -426,10 +423,7 @@
 														"value": "@item().database",
 														"type": "Expression"
 													},
-													"schema_name": {
-														"value": "@split(item().tablename, '.')[0]",
-														"type": "Expression"
-													},
+													"schema_name": "@split(item().tablename, '.')[0]",
 													"table_name": {
 														"value": "@split(item().tablename, '.')[1]",
 														"type": "Expression"
