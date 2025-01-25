@@ -31,7 +31,7 @@
 								"source": {
 									"type": "AzureDatabricksDeltaLakeSource",
 									"query": {
-										"value": "@concat('select coalesce(cast(max(loaddate) as date),''','1900-01-01',''') as last_fetched_date from @item().rcm_hc_adb_ws.audit.load_logs where',' data_source=''',pipeline().parameters.datasource,''' and tablename=''',pipeline().parameters.tablename,'''')",
+										"value": "@concat('select coalesce(cast(max(loaddate) as date),''','1900-01-01',''') as last_fetched_date from rcm_hc_adb_ws.audit.load_logs where',' data_source=''',pipeline().parameters.datasource,''' and tablename=''',pipeline().parameters.tablename,'''')",
 										"type": "Expression"
 									}
 								},
