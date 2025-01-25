@@ -336,7 +336,7 @@
 							"ifTrueActivities": [
 								{
 									"name": "Full_Load",
-									"description": "if its a full load copy all the records and put it in bronze folder",
+									"description": "if its a full load, copy all the records and put it in bronze folder",
 									"type": "Copy",
 									"dependsOn": [],
 									"policy": {
@@ -386,11 +386,11 @@
 													"type": "Expression"
 												},
 												"schema_name": {
-													"value": "@split(pipeline().parameters.tablename,'.')[0]",
+													"value": "@split(pipeline().parameters.tablename, '.')[0]",
 													"type": "Expression"
 												},
 												"table_name": {
-													"value": "@split(pipeline().parameters.tablename,'.')[1]",
+													"value": "@split(pipeline().parameters.tablename, '.')[1]",
 													"type": "Expression"
 												}
 											}
@@ -1194,12 +1194,9 @@
 																"value": "@item().database",
 																"type": "Expression"
 															},
-															"schema_name": {
-																"value": "@split(item().tablename,'.')[0]",
-																"type": "Expression"
-															},
+															"schema_name": "@split(item().tablename, '.')[0]",
 															"table_name": {
-																"value": "@split(item().tablename,'.')[1]",
+																"value": "@split(item().tablename, '.')[1]",
 																"type": "Expression"
 															}
 														}
@@ -1313,10 +1310,7 @@
 																"value": "@item().database",
 																"type": "Expression"
 															},
-															"schema_name": {
-																"value": "@split(item().tablename, '.')[0]",
-																"type": "Expression"
-															},
+															"schema_name": "@split(item().tablename, '.')[0]",
 															"table_name": {
 																"value": "@split(item().tablename, '.')[1]",
 																"type": "Expression"
